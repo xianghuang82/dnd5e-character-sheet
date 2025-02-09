@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DND 5e 角色卡 | DND 5e Character Sheet</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- 角色基本信息 -->
+    <div class="character-info">
+        <h2>角色基本信息 | Character Information</h2>
+        <label for="character-name">姓名： | Name:</label>
+        <input type="text" id="character-name" placeholder="输入角色姓名 | Enter character name">
+        <label for="race">种族： | Race:</label>
+        <select id="race">
+            <option value="人类">人类 | Human</option>
+            <option value="精灵">精灵 | Elf</option>
+            <option value="矮人">矮人 | Dwarf</option>
+            <option value="半身人">半身人 | Halfling</option>
+            <option value="侏儒">侏儒 | Gnome</option>
+            <option value="半精灵">半精灵 | Half - Elf</option>
+            <option value="半兽人">半兽人 | Half - Orc</option>
+            <option value="龙裔">龙裔 | Dragonborn</option>
+            <option value="提夫林">提夫林 | Tiefling</option>
+            <option value="亚斯敏">亚斯敏 | Aasimar</option>
+            <option value="变体人类">变体人类 | Variant Human</option>
+        </select>
+        <label for="class">职业： | Class:</label>
+        <select id="class">
+            <option value="战士">战士 | Fighter</option>
+            <option value="法师">法师 | Wizard</option>
+            <option value="牧师">牧师 | Cleric</option>
+            <option value="盗贼">盗贼 | Rogue</option>
+            <option value="武僧">武僧 | Monk</option>
+            <option value="野蛮人">野蛮人 | Barbarian</option>
+            <option value="圣骑士">圣骑士 | Paladin</option>
+            <option value="术士">术士 | Warlock</option>
+            <option value="德鲁伊">德鲁伊 | Druid</option>
+            <option value="吟游诗人">吟游诗人 | Bard</option>
+            <option value="巡林客">巡林客 | Ranger</option>
+            <option value="邪术师">邪术师 | Sorcerer</option>
+        </select>
+    </div>
+
+    <!-- 能力值 -->
+    <div class="ability-scores">
+        <h2>能力值 | Ability Scores</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>属性 | Attribute</th>
+                    <th>数值 | Value</th>
+                    <th>修正值 | Modifier</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>力量 | Strength</td>
+                    <td><input type="number" id="strength" value="10"></td>
+                    <td><span id="strength-modifier"></span></td>
+                </tr>
+                <tr>
+                    <td>敏捷 | Dexterity</td>
+                    <td><input type="number" id="dexterity" value="10"></td>
+                    <td><span id="dexterity-modifier"></span></td>
+                </tr>
+                <tr>
+                    <td>体质 | Constitution</td>
+                    <td><input type="number" id="constitution" value="10"></td>
+                    <td><span id="constitution-modifier"></span></td>
+                </tr>
+                <tr>
+                    <td>智力 | Intelligence</td>
+                    <td><input type="number" id="intelligence" value="10"></td>
+                    <td><span id="intelligence-modifier"></span></td>
+                </tr>
+                <tr>
+                    <td>感知 | Wisdom</td>
+                    <td><input type="number" id="wisdom" value="10"></td>
+                    <td><span id="wisdom-modifier"></span></td>
+                </tr>
+                <tr>
+                    <td>魅力 | Charisma</td>
+                    <td><input type="number" id="charisma" value="10"></td>
+                    <td><span id="charisma-modifier"></span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 技能 -->
+    <div class="character-skills">
+        <h2>技能 | Skills</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>技能 | Skill</th>
+                    <th>关联能力 | Associated Ability</th>
+                    <th>加值 | Bonus</th>
+                    <th>手动调整 | Manual Adjustment</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>运动 | Athletics</td>
+                    <td>力量 | Strength</td>
+                    <td><span id="athletics-bonus"></span></td>
+                    <td>
+                        <select id="athletics-adjust" onchange="adjustSkillBonus('athletics')">
+                            <option value="0">无调整</option>
+                            <option value="1">+1</option>
+                            <option value="2">+2</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>杂技 | Acrobatics</td>
+                    <td>敏捷 | Dexterity</td>
+                    <td><span id="acrobatics-bonus"></span></td>
+                    <td>
+                        <select id="acrobatics-adjust" onchange="adjustSkillBonus('acrobatics')">
+                            <option value="0">无调整</option>
+                            <option value="1">+1</option>
+                            <option value="2">+2</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>潜行 | Sleight of Hand</td>
+                    <td>敏捷 | Dexterity</td>
+                    <td><span id="sleight-of-hand-bonus"></span></td>
+                    <td>
+                        <select id="sleight-of-hand-adjust" onchange="adjustSkillBonus('sleight-of-hand')">
+                            <option value="0">无调整</option>
+                            <option value="1">+1</option>
+                            <option value="2">+2</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>隐匿 | Stealth</td>
+                    <td>敏捷 | Dexterity</td>
+                    <td><span id="stealth-bonus"></span></td>
+                    <td>
+                        <select id="stealth-adjust" onchange="adjustSkillBonus('stealth')">
+                            <option value="0">无调整</option>
+                            <option value="1">+1</option>
+                            <option value="2">+2</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>历史 | History</td>
+                    <td>智力 | Intelligence</td>
+                    <td><span id="history-bonus"></span></td>
+                    <td>
+                        <select id="history-adjust" onchange="adjustSkillBonus('history')">
+                            <option value="0">无调整</option>
+                            <option value="1">+1</option>
+                            <option value="2">+2</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>调查 | Investigation</td>
+                    <td>智力 | Intelligence</td>
+                    <td><span id="investigation-bonus"></span></td>
+                    <td>
+                        <select id="investigation-adjust" onchange="adjustSkillBonus('investigation')">
+                            <option value="0">无调整</option>
+                            <option value="1">+1</option>
+                            <option value="2">+2</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>自然 | Nature</td>
+                    <td>智力 | Intelligence</td>
+                    <td><span id="nature-bonus"></span></td>
+                    <td>
+                        <select id="nature-adjust" onchange="adjustSkillBonus('nature')">
+                            <option value="0">无调整</option>
+                            <option value="1">+1</option>
+                            <option value="2">+2</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>宗教 | Religion</td>
+                    <td>智力 | Intelligence</td>
+                    <td><span id="religion-bonus"></span></td>
+                    <td>
+                        <select id="religion-adjust" onchange="adjustSkillBonus('religion')">
+                            <option value="0">无调整</option>
+                            <option value="1">+1</option>
+                            <option value="2">+2</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>动物操控 | Animal Handling</td>
+                    <td>感知 | Wisdom</td>
+                    <td><span id="animal-handling-bonus"></span></td>
+                    <td>
+                        <select id="animal-handling-adjust" onchange="adjustSkillBonus('animal-handling')">
+                            <option value="0">无调整</option>
+                            <option value="1">+1</option>
+                            <option value="2">+2</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>洞察 | Insight</td>
+                    <td>感知 | Wisdom</td>
+                    <td><span id="insight-bonus"></span></td>
+                    <td>
+                        <select id="insight-adjust" onchange="adjustSkillBonus('insight')">
+                            <option value="0">无调整</option>
+                            <option value="1">+1</option>
+                            <option value="2">+2</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>医疗 | Medicine</td>
+                    <td>感知 | Wisdom</td>
+                    <td><span id="medicine-bonus"></span></td>
+                    <td>
+                        <select id="medicine-adjust" onchange="adjustSkillBonus('medicine')">
+                            <option value="0">无调整</option>
+                            <option value="1">+1</option>
+                            <option value="2">+2</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>感知 | Perception</td>
+                    <td>感知 | Wisdom</td>
+                    <td><span id="perception-bonus"></span></td>
+                    <td>
+                        <select id="perception-adjust" onchange="adjustSkillBonus('perception')">
+                            <option value="0">无调整</option>
+                            <option value="1">+1</option>
+                            <option value="2">+2</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>生存 | Survival</td>
+                    <td>感知 | Wisdom</td>
+                    <td><span id="survival-bonus"></span></td>
+                    <td>
+                        <select id="survival-adjust" onchange="adjustSkillBonus('survival')">
+                            <option value="0">无调整</option>
+                            <option value="1">+1</option>
+                            <option value="2">+2</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>欺瞒 | Deception</td>
+                    <td>魅力 | Charisma</td>
+                    <td><span id="deception-bonus"></span></td>
+                    <td>
+                        <select id="deception-adjust" onchange="adjustSkillBonus('deception')">
+                            <option value="0">无调整</option>
+                            <option value="1">+1</option>
+                            <option value="2">+2</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>表演 | Performance</td>
+                    <td>魅力 | Charisma</td>
+                    <td><span id="performance-bonus"></span></td>
+                    <td>
+                        <select id="performance-adjust" onchange="adjustSkillBonus('performance')">
+                            <option value="0">无调整</option>
+                            <option value="1">+1</option>
+                            <option value="2">+2</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>威吓 | Intimidation</td>
+                    <td>魅力 | Charisma</td>
+                    <td><span id="intimidation-bonus"></span></td>
+                    <td>
+                        <select id="intimidation-adjust" onchange="adjustSkillBonus('intimidation')">
+                            <option value="0">无调整</option>
+                            <option value="1">+1</option>
+                            <option value="2">+2</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>游说 | Persuasion</td>
+                    <td>魅力 | Charisma</td>
+                    <td><span id="persuasion-bonus"></span></td>
+                    <td>
+                        <select id="persuasion-adjust" onchange="adjustSkillBonus('persuasion')">
+                            <option value="0">无调整</option>
+                            <option value="1">+1</option>
+                            <option value="2">+2</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="character-background-skills">
+        <h2>角色背景和技能加持参考表 | Character Background and Skill Bonuses Reference Table</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>角色背景 | Character Background</th>
+                    <th>技能加持 | Skill Bonuses</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>士兵 | Soldier</td>
+                    <td>运动 +2，恐吓 +1 | Athletics +2, Intimidation +1</td>
+                </tr>
+                <tr>
+                    <td>学者 | Scholar</td>
+                    <td>历史 +2，调查 +1 | History +2, Investigation +1</td>
+                </tr>
+                <tr>
+                    <td>盗贼 | Thief</td>
+                    <td>偷窃 +2，隐匿 +1 | Sleight of Hand +2, Stealth +1</td>
+                </tr>
+                <tr>
+                    <td>贵族 | Noble</td>
+                    <td>历史 +1，游说 +2 | History +1, Persuasion +2</td>
+                </tr>
+                <tr>
+                    <td>水手 | Sailor</td>
+                    <td>运动 +1，感知 +1 | Athletics +1, Perception +1</td>
+                </tr>
+                <tr>
+                    <td>工匠 | Artisan</td>
+                    <td>巧手 +1，历史 +1 | Sleight of Hand +1, History +1</td>
+                </tr>
+                <tr>
+                    <td>隐士 | Hermit</td>
+                    <td>自然 +2，洞察 +1 | Nature +2, Insight +1</td>
+                </tr>
+                <tr>
+                    <td>艺人 | Entertainer</td>
+                    <td>表演 +2，杂技 +1 | Performance +2, Acrobatics +1</td>
+                </tr>
+                <tr>
+                    <td>冒险家 | Adventurer</td>
+                    <td>生存 +1，察觉 +1 | Survival +1, Perception +1</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
